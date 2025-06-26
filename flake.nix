@@ -12,11 +12,44 @@
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
+      nixpkgs.config.allowUnfree = true;
+
       environment.systemPackages = with pkgs;
         [
+          # apps
+          # _1password-gui # cannot see app icon in finder Applications
+          # firefox
+          wakeonlan
+          zoom-us
+
+          # dev
+          _1password-cli
           ansible
           awscli2
+          curl
+          deno
+          git
+          go
+          k3d
+          k9s
+          gnutls
+          kubernetes-helm
+          postman
+          wget
+
+          # unavailable on darwin
+          # kubernetes
+
         ];
+
+      # # Homebrew casks
+      homebrew = {
+        enable = true;
+        casks = [
+          "firefox"
+          "1password"
+        ];
+      };
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
@@ -36,6 +69,22 @@
 
       # Security
       security.pam.services.sudo_local.touchIdAuth = true;
+
+      system.primaryUser = "Matt";
+
+      system.defaults = {
+        dock.autohide = false;
+        finder.AppleShowAllExtensions = true;
+        finder.FXPreferredViewStyle = "clmv";
+        # screencapture.location = "~/Desktop/screenshots";
+        # screensaver.askForPasswordDelay = 10;
+      };
+
+      users.users.Matt = {
+        name = "Matt";
+        home = "/Users/matt";
+      };
+
       
     };
   in
