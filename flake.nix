@@ -46,9 +46,58 @@
       homebrew = {
         enable = true;
         casks = [
-          "firefox"
           "1password"
+          "authy"
+          "banktivity"
+          "betterzip"
+          "bitwarden"
+          "blender"
+          "brave-browser"
+          # "discord"
+          "docker-desktop"
+          "dropbox"
+          "expandrive"
+          "firefox"
+          "fujitsu-scansnap-home"
+          "gitbutler"
+          "google-chrome"
+          "google-chrome@canary"
+          # google cloud sdk to be via nix
+          "gpg-suite"
+          # "handbrake-app"
+          "iterm2"
+          "kaleidoscope"
+          "kindle"
+          "little-snitch"
+          "nordvpn"
+          "obsidian"
+          "omnifocus"
+          #  openvpn-connect
+          "proton-pass"
+          # proxyman
+          "prusaslicer"
+          # quip
+          "rectangle"
+          # resilio-sync 
+          "shift"
+          "shiftit"
+          # splashtop-streamer 
+          "spotify"
+          "steam"
+          "tailscale-app"
+          "teamviewer"
+          # tower
+          # "transmission"
+          # transmit
+          # "tunnelblick"
+          "ultimaker-cura"
+          "visual-studio-code"
+          "visual-studio-code@insiders"
+          # "vlc"
+          # "vlcstreamer"
+          "whatsapp"
         ];
+        # onActivation.cleanup = false; # comment out to disable cleanup
       };
 
       # Necessary for using flakes on this system.
