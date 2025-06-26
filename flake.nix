@@ -16,30 +16,32 @@
 
       environment.systemPackages = with pkgs;
         [
-          # apps
-          # _1password-gui # cannot see app icon in finder Applications
-          # firefox
-          wakeonlan
-          zoom-us
-
-          # dev
+          # cli
           _1password-cli
           ansible
           awscli2
           curl
           deno
           git
+          gnutls
           go
+          google-cloud-sdk 
+          # ipfs
           k3d
           k9s
-          gnutls
+          kubectl
           kubernetes-helm
-          postman
+          nmap
+          nodejs
+          openssl_3
+          python3
+          rustc
+          rustup
+          sqlite
+          wakeonlan
           wget
-
-          # unavailable on darwin
-          # kubernetes
-
+          yarn
+          zsh
         ];
 
       # # Homebrew casks
@@ -73,6 +75,7 @@
           "obsidian"
           "omnifocus"
           #  openvpn-connect
+          # postman
           "proton-pass"
           # proxyman
           "prusaslicer"
@@ -96,6 +99,7 @@
           # "vlc"
           # "vlcstreamer"
           "whatsapp"
+          "zoom"
         ];
         # onActivation.cleanup = false; # comment out to disable cleanup
       };
