@@ -1,5 +1,5 @@
 {
-  description = "Example nix-darwin system flake";
+  description = "Nix-Darwin Flake for Personal MacBook Pro";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -7,15 +7,18 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs }:
+  outputs = inputs@{ 
+      self, 
+      nix-darwin, 
+      nixpkgs, 
+    }:
   let
     configuration = { pkgs, ... }: {
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
       nixpkgs.config.allowUnfree = true;
-
       environment.systemPackages = with pkgs;
         [
+          # home manager
+          home-manager
           # cli
           _1password-cli
           ansible
@@ -70,7 +73,7 @@
           # "handbrake-app"
           "iterm2"
           "kaleidoscope"
-          "kindle"
+          # "kindle"
           "little-snitch"
           "nordvpn"
           "obsidian"
@@ -144,7 +147,7 @@
       system.defaults = {
         dock.autohide = false;
         finder.AppleShowAllExtensions = true;
-        finder.FXPreferredViewStyle = "clmv";
+        finder.FXPreferredViewStyle = "clmv"; # default Finder to column view
         # screencapture.location = "~/Desktop/screenshots";
         # screensaver.askForPasswordDelay = 10;
       };
@@ -153,15 +156,16 @@
         name = "Matt";
         home = "/Users/matt";
       };
-
-      
     };
   in
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#MattsM3
-    darwinConfigurations."MattsM3" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations.MattsM3 = nix-darwin.lib.darwinSystem {
       modules = [ configuration ];
     };
+
+    # Expose package set, including overlays, for convinience.
+    darwinPackages = self.darwinConfigurations.MattsM3.packages;
   };
 }
