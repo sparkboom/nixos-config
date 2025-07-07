@@ -8,6 +8,9 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     mac-app-util.url = "github:hraban/mac-app-util";
+
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ 
@@ -15,6 +18,7 @@
       nix-darwin, 
       nixpkgs, 
       mac-app-util,
+      home-manager,
     }:
   let
     configuration = { pkgs, ... }: {
@@ -50,7 +54,7 @@
       # Security
       security.pam.services.sudo_local.touchIdAuth = true;
 
-      system.primaryUser = "Matt";
+      system.primaryUser = "matt";
 
       system.defaults = {
         dock.autohide = false;
@@ -60,8 +64,8 @@
         # screensaver.askForPasswordDelay = 10;
       };
 
-      users.users.Matt = {
-        name = "Matt";
+      users.users.matt = {
+        name = "matt";
         home = "/Users/matt";
       };
     };
@@ -70,9 +74,15 @@
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#MattsM3
     darwinConfigurations.MattsM3 = nix-darwin.lib.darwinSystem {
-      modules = [ 
+      modules = [
         mac-app-util.darwinModules.default
         configuration
+        home-manager.darwinModules.home-manager {
+          home-manager.backupFileExtension = ".bak";
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.matt = import ./home-manager/home.nix;
+        }
       ];
     };
 
