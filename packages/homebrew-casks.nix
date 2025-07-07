@@ -25,6 +25,7 @@
   "nordvpn"
   "prusaslicer"
   "shift"
+  "superwhisper"
   "ultimaker-cura"
   # "kindle"
   # proxyman
