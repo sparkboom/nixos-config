@@ -6,11 +6,9 @@
 
   home.stateVersion = "23.11"; # Set this to the version you want to target
 
-  # Example: Enable some Home Manager modules
-  programs.zsh.enable = true;
-  programs.git.enable = true;
+  programs.zsh = import ./zsh.nix;
+  programs.git = import ./git.nix;
 
-  # Example: Set some dotfiles or options
   home.file.".editorconfig".text = ''
     root = true
 
@@ -19,7 +17,6 @@
     indent_size = 2
   '';
 
-  # Example: Add some user packages
   home.packages = with pkgs; [
     htop
     jq
