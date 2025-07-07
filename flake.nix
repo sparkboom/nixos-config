@@ -139,6 +139,8 @@
           "Xcode" = 497799835;
         };
         onActivation.cleanup = "uninstall";
+        onActivation.upgrade = false;
+        onActivation.autoUpdate = true;
       };
 
       # Necessary for using flakes on this system.
