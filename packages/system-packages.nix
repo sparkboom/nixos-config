@@ -1,20 +1,18 @@
 { pkgs }:
 
 with pkgs; [
-  # home manager
-  home-manager
-
   # cli
   _1password-cli
   ansible
   awscli2
   curl
   deno
+  fzf
   git
   gnutls
   go
   google-cloud-sdk 
-  # ipfs
+  home-manager
   k3d
   k9s
   kubectl
@@ -54,6 +52,7 @@ with pkgs; [
   # Apps - not for now
   # discord
   # handbrake
+  # ipfs
   # openvpn
   # postman
   # transmission_4
