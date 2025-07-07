@@ -19,125 +19,13 @@
   let
     configuration = { pkgs, ... }: {
       nixpkgs.config.allowUnfree = true;
-      environment.systemPackages = with pkgs;
-        [
-          # home manager
-          home-manager
-
-          # cli
-          _1password-cli
-          ansible
-          awscli2
-          curl
-          deno
-          git
-          gnutls
-          go
-          google-cloud-sdk 
-          # ipfs
-          k3d
-          k9s
-          kubectl
-          kubernetes-helm
-          mas
-          nmap
-          nodejs
-          openssl_3
-          python3
-          rustc
-          rustup
-          sqlite
-          wakeonlan
-          wget
-          yarn
-          zsh
-
-          # Apps
-          bitwarden-desktop # ok
-          blender # ok
-          firefox # still loadable by launcher
-          gitbutler
-          google-chrome # 'google-chrome'
-          iterm2 # "iterm2" cask
-          obsidian # "obsidian" cask
-          rectangle # "rectangle" cask
-          spotify # 'spotify' cask
-          tailscale # 'tailscale-app' cask
-          whatsapp-for-mac # "whatsapp" cask
-          vscode # "visual-studio-code" cask
-          zoom-us # 'zoom' cask
-
-          # Newly installed
-
-          # Apps - not for now
-          # discord
-          # handbrake # "handbrake-app" cask
-          # openvpn # "openvpn-connect" cask - not sure if this is the correct one
-          # postman # "postman" cask
-          # transmission_4 # "transmission"  cask
-          # vlc # "vlc" cask
-          # tailscale# "tailscale-app" 
-          # zoom-us # "zoom" cask
-        ];
+      environment.systemPackages = import ./packages/system-packages.nix { inherit pkgs; };
 
       # # Homebrew casks
       homebrew = {
         enable = true;
-        casks = [
-          # Found in Nix search, installs, fails to launch from /nix/store
-          "1password" # '1password-gui' 
-          # Found in Nix search, installs, fails to launch
-          "brave-browser" # 'brave'
-          # Found in Nix, Failed to install
-          "dropbox" # 'dropbox'
-          "steam" # unsure
-          # Found in Nix, Can't Install, only supports x86_64-linux
-          # you could try to use export NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 when installing
-          "proton-pass"  # 'proton-pass'
-          "teamviewer" # 'teamviewer'
-          
-          # Not found in Nix search
-          "authy"  
-          "banktivity"
-          "betterzip"
-          "docker-desktop" # is this available somewhere?
-          "expandrive"
-          "fujitsu-scansnap-home"
-          "google-chrome@dev"
-          "google-chrome@canary"
-          "kaleidoscope"
-          "little-snitch"
-          "nordvpn"
-          "prusaslicer"
-          "shift"
-          "ultimaker-cura"
-          # "kindle"
-          # proxyman
-          # splashtop-streamer
-          # transmit
-          # "tunnelblick"
-          # "vlcstreamer"
-
-          
-          "gpg-suite" # not sure if the UI is available on Nix, the cli tools are
-          "visual-studio-code@insiders" # might be a way
-        ];
-
-        masApps = {
-          "3d Scanner App" = 1419913995;
-          "AI Chat Bot" = 6447312365;
-          "Apple Configurator" = 1037126344;
-          "Brother P-touch Editor" = 1453365242;
-          "Day One" = 1055511498;
-          "Home Assistant" = 1099568401;
-          "Numbers" = 409203825;
-          "OmniFocus" = 1542143627;
-          "Paprika Recipe Manager 3" = 1234567890;
-          "Pixelmator Pro" = 1289583905;
-          "Spatial Media Toolkit" = 6477903679;
-          "Windows App" = 1295203466;
-          "Xcode" = 497799835;
-        };
+        casks = import ./packages/homebrew-casks.nix;
+        masApps = import ./packages/mas-apps.nix;
         onActivation.cleanup = "uninstall";
         onActivation.upgrade = false;
         onActivation.autoUpdate = true;
