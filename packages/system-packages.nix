@@ -32,6 +32,7 @@ with pkgs; [
   volta
   yarn
   zsh
+  zsh-powerlevel10k
 
   # Apps
   bitwarden-desktop

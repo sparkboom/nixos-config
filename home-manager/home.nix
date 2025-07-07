@@ -6,7 +6,7 @@
 
   home.stateVersion = "23.11"; # Set this to the version you want to target
 
-  programs.zsh = import ./zsh.nix;
+  programs.zsh = import ./zsh.nix { inherit pkgs; };
   programs.git = import ./git.nix;
 
   home.file.".editorconfig".text = ''
