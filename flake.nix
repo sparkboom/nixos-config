@@ -3,14 +3,18 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
+    mac-app-util.url = "github:hraban/mac-app-util";
   };
 
   outputs = inputs@{ 
       self, 
       nix-darwin, 
       nixpkgs, 
+      mac-app-util,
     }:
   let
     configuration = { pkgs, ... }: {
@@ -19,6 +23,7 @@
         [
           # home manager
           home-manager
+
           # cli
           _1password-cli
           ansible
@@ -46,63 +51,76 @@
           wget
           yarn
           zsh
+
+          # Apps
+          bitwarden-desktop # ok
+          blender # ok
+          firefox # still loadable by launcher
+          gitbutler
+          google-chrome # 'google-chrome'
+          iterm2 # "iterm2" cask
+          obsidian # "obsidian" cask
+          rectangle # "rectangle" cask
+          spotify # 'spotify' cask
+          tailscale # 'tailscale-app' cask
+          whatsapp-for-mac # "whatsapp" cask
+          vscode # "visual-studio-code" cask
+          zoom-us # 'zoom' cask
+
+          # Newly installed
+
+          # Apps - not for now
+          # discord
+          # handbrake # "handbrake-app" cask
+          # openvpn # "openvpn-connect" cask - not sure if this is the correct one
+          # postman # "postman" cask
+          # transmission_4 # "transmission"  cask
+          # vlc # "vlc" cask
+          # tailscale# "tailscale-app" 
+          # zoom-us # "zoom" cask
         ];
 
       # # Homebrew casks
       homebrew = {
         enable = true;
         casks = [
-          "1password"
-          "authy"
+          # Found in Nix search, installs, fails to launch from /nix/store
+          "1password" # '1password-gui' 
+          # Found in Nix search, installs, fails to launch
+          "brave-browser" # 'brave'
+          # Found in Nix, Failed to install
+          "dropbox" # 'dropbox'
+          "steam" # unsure
+          # Found in Nix, Can't Install, only supports x86_64-linux
+          # you could try to use export NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 when installing
+          "proton-pass"  # 'proton-pass'
+          "teamviewer" # 'teamviewer'
+          
+          # Not found in Nix search
+          "authy"  
           "banktivity"
           "betterzip"
-          "bitwarden"
-          "blender"
-          "brave-browser"
-          # "discord"
-          "docker-desktop"
-          "dropbox"
+          "docker-desktop" # is this available somewhere?
           "expandrive"
-          "firefox"
           "fujitsu-scansnap-home"
-          "gitbutler"
-          "google-chrome"
+          "google-chrome@dev"
           "google-chrome@canary"
-          # google cloud sdk to be via nix
-          "gpg-suite"
-          # "handbrake-app"
-          "iterm2"
           "kaleidoscope"
-          # "kindle"
           "little-snitch"
           "nordvpn"
-          "obsidian"
-          #  openvpn-connect
-          # postman
-          "proton-pass"
-          # proxyman
           "prusaslicer"
-          # quip
-          "rectangle"
-          # resilio-sync 
           "shift"
-          "shiftit"
-          # splashtop-streamer 
-          "spotify"
-          "steam"
-          "tailscale-app"
-          "teamviewer"
-          # tower
-          # "transmission"
+          "ultimaker-cura"
+          # "kindle"
+          # proxyman
+          # splashtop-streamer
           # transmit
           # "tunnelblick"
-          "ultimaker-cura"
-          "visual-studio-code"
-          "visual-studio-code@insiders"
-          # "vlc"
           # "vlcstreamer"
-          "whatsapp"
-          "zoom"
+
+          
+          "gpg-suite" # not sure if the UI is available on Nix, the cli tools are
+          "visual-studio-code@insiders" # might be a way
         ];
 
         masApps = {
@@ -120,7 +138,7 @@
           "Windows App" = 1295203466;
           "Xcode" = 497799835;
         };
-        # onActivation.cleanup = false; # comment out to disable cleanup
+        onActivation.cleanup = "uninstall";
       };
 
       # Necessary for using flakes on this system.
@@ -162,7 +180,10 @@
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#MattsM3
     darwinConfigurations.MattsM3 = nix-darwin.lib.darwinSystem {
-      modules = [ configuration ];
+      modules = [ 
+        mac-app-util.darwinModules.default
+        configuration
+      ];
     };
 
     # Expose package set, including overlays, for convinience.
