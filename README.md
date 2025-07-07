@@ -18,6 +18,9 @@ Update
 # ~/dotfiles >
 nix flake update
 sudo darwin-rebuild switch --flake .
+
+# Dry Run
+sudo darwin-rebuild switch --flake . --dry-run
 ```
 
 Home-Manager Update

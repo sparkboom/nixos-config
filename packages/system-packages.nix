@@ -29,6 +29,7 @@ with pkgs; [
   sqlite
   wakeonlan
   wget
+  volta
   yarn
   zsh
 

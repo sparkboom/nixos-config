@@ -1,11 +1,14 @@
 [
   # Found in Nix search, installs, fails to launch from /nix/store
   "1password" # '1password-gui' 
+  
   # Found in Nix search, installs, fails to launch
   "brave-browser" # 'brave'
+
   # Found in Nix, Failed to install
   "dropbox" # 'dropbox'
   "steam" # unsure
+
   # Found in Nix, Can't Install, only supports x86_64-linux
   # you could try to use export NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 when installing
   "proton-pass"  # 'proton-pass'
