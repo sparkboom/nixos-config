@@ -29,6 +29,7 @@ with pkgs; [
   wget
   volta
   yarn
+  zinit
   zsh
   zsh-powerlevel10k
 
