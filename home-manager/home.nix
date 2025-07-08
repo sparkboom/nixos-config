@@ -17,6 +17,23 @@
     indent_size = 2
   '';
 
+  home.file.".p10k.zsh".text = ''
+    # Powerlevel10k configuration
+    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs time)
+    POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+    POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="> "
+    POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="$ "
+    POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+    POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
+    POWERLEVEL9K_TIME_FORMAT='%D{%H:%M:%S}'
+    POWERLEVEL9K_STATUS_OK=true
+    POWERLEVEL9K_STATUS_ERROR=true
+    POWERLEVEL9K_VCS_CLEAN_FOREGROUND='green'
+    POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='yellow'
+    POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='red'
+  '';
+
   home.packages = with pkgs; [
     htop
     jq
