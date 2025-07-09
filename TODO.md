@@ -1,9 +1,11 @@
 # To Do
 
-Dock
-- define which apps to appear on the dock at all times and order
+Secrets mgmt
 
-Shell Config
+Mac Configure
+- define which apps to appear on the dock at all times and order
+- launch 
+- which app not to launch at startup?
 
 zsh plugins?
 - belak/zsh-utils. ?
@@ -11,7 +13,6 @@ zsh plugins?
 - z
 - ssh-agent
 - zsh-bat
-- git?
 https://gist.github.com/kevin-smets/8568070
 
 Apps to configure
