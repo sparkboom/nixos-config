@@ -9,7 +9,7 @@ PATH=$PATH:/run/current-system/sw/bin
 
 Nix Darwin - Rebuild
 ```sh
-sudo darwin-rebuild switch --flake ~/dotfiles
+just rebuild
 ```
 
 Update
@@ -25,6 +25,6 @@ sudo darwin-rebuild switch --flake . --dry-run
 
 Home-Manager Update
 ```sh
-home-manager switch --flake ~/dotfiles/home-manager/#matt
+home-manager switch --flake ~/Repos/infra/nix-config/home-mananger
 ```
 

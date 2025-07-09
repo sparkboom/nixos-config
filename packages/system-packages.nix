@@ -5,14 +5,17 @@ with pkgs; [
   _1password-cli
   ansible
   awscli2
+  bat
   curl
   deno
+  eza
   fzf
   git
   gnutls
   go
   google-cloud-sdk 
   home-manager
+  just
   k3d
   k9s
   kubectl
@@ -20,23 +23,32 @@ with pkgs; [
   mas
   nmap
   nodejs
+  oh-my-posh
   openssl_3
   python3
   rustc
   rustup
   sqlite
+  stow
+  thefuck
+  tlrc
+  tmux
   wakeonlan
   wget
   volta
   yarn
-  zinit
+  zoxide
   zsh
-  zsh-powerlevel10k
+  zsh-autosuggestions
+  zsh-completions
+  zsh-fzf-tab
+  zsh-syntax-highlighting
 
-  # Apps
+  # GUI Apps
   bitwarden-desktop
   blender
   firefox
+  # ghostty # currently marked as broken
   gitbutler
   google-chrome
   iterm2

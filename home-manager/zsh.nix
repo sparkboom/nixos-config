@@ -3,16 +3,72 @@
   enable = true;
   shellAliases =
     (import ./aliases/git.nix)
+    // (import ./aliases/apps.nix)
     // (import ./aliases/docker.nix)
     // (import ./aliases/kubernetes.nix)
-    // (import ./aliases/shortcuts.nix);
-  oh-my-zsh = {
-    enable = true;
-    plugins = [ "git" ];
-    theme = "powerlevel10k";
-    custom = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k";
-    # initExtra = ''
-    #   [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-    # '';
+    // (import ./aliases/shortcuts.nix)
+    // {
+      ls = "ls -A --color";
+    };
+  
+  initContent = ''
+    # Enable hidden files in zsh completio
+    # setopt globdots
+    # compinit _comp_options+=(globdots)
+
+    # Allow completions to be case-insensitive
+    zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+    # Allow completions to use colors
+    zstyle ':completion:*' list-colors "\$\{(s.:.\)LS_COLORS}"
+
+    # Stop default completion behavior
+    zstyle ':completion:*' menu no
+    # Show preview in autocompletion
+    zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realPath'
+
+    if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
+      eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/default.toml)"
+    fi
+
+    # Enable zoxide
+    # eval "$(zoxide init zsh)"
+
+    # Enable fzf tab completion
+    eval "$(fzf --zsh)"
+
+    # Enable fuzzy zsh-autosuggestions
+    source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+
+  '';
+
+  history = {
+    ignoreDups = true; # HIST_IGNORE_DUPS
+    ignoreAllDups = true; # HIST_IGNORE_ALL_DUPS, HISTDUP=erase
+    share = false; # SHARE_HISTORY
+    size = 10000; # HISTSIZE  
+    save = 10000; # HISTSIZE  
+    ignoreSpace = true; # HIST_IGNORE_SPACE
+    # reduceBlanks = true; # HIST_REDUCE_BLANKS
+    extended = true; # HIST_EXTENDED
   };
+
+  plugins = [
+    {
+      name = "zsh-autosuggestions";
+      src = "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions";
+    }
+    {
+      name = "zsh-syntax-highlighting";
+      src = "${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting";
+    }
+    {
+      name = "zsh-completions";
+      src = "${pkgs.zsh-completions}/share/zsh-completions";
+    }
+    {
+      name = "zsh-fzf-tab";
+      src = "${pkgs.zsh-fzf-tab}/share/zsh-fzf-tab";
+    }
+  ];
 }

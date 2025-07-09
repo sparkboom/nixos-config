@@ -21,6 +21,7 @@
   "docker-desktop" # is this available somewhere?
   "expandrive"
   "fujitsu-scansnap-home"
+  "ghostty"
   "google-chrome@dev"
   "google-chrome@canary"
   "kaleidoscope"
