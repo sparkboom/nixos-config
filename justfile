@@ -14,8 +14,16 @@ update:
 zshrc:
   c ~/.zshrc
 
+search-hm query:
+  # Query Home Manager
+  open -a "Google Chrome" "https://home-manager-options.extranix.com/?query={{query}}"
+
+search-nix query:
+  # Query Nix Packages
+  open -a "Google Chrome" "https://search.nixos.org/packages?query={{query}}"
+
 search-store search:
-  # Search Nix Store via grep
+  # Search local Nix store via Grep
   nix-store --query --requisites /run/current-system | grep {{search}}
 
 stow:
