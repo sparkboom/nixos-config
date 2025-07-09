@@ -2,6 +2,18 @@
 
 Secrets mgmt
 
+Fixes
+- open command doesn't open urls
+- open auto-complete for mac apps?
+
+Aliases
+- env - to use color
+- path var - list paths with color
+
+Fonts
+- instructions for operator mono
+- other fonts?
+
 Mac Configure
 - define which apps to appear on the dock at all times and order
 - launch 
