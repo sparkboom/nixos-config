@@ -1,26 +1,22 @@
 # Nix Darwin 
 
-- currently only supported in bash
-
-be sure to add the nix darwin path
-```sh
-PATH=$PATH:/run/current-system/sw/bin
-```
-
 Nix Darwin - Rebuild
 ```sh
 just rebuild
+
+# If just is not installed (i.e. first time use), then use
+PATH=$PATH:/run/current-system/sw/bin
+sudo darwin-rebuild switch --flake ~/Repos/infra/nix-config
+
+# Dry Run
+just rebuild-dry
 ```
 
 Update
 - updates dependencies the flake.lock file updates
 ```sh
 # ~/dotfiles >
-nix flake update
-sudo darwin-rebuild switch --flake .
-
-# Dry Run
-sudo darwin-rebuild switch --flake . --dry-run
+just update
 ```
 
 Home-Manager Update
