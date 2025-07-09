@@ -25,12 +25,12 @@ with pkgs; [
   nodejs
   oh-my-posh
   openssl_3
+  pay-respects
   python3
   rustc
   rustup
   sqlite
   stow
-  thefuck
   tlrc
   tmux
   wakeonlan
