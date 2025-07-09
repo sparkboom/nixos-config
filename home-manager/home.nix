@@ -22,6 +22,10 @@
       enable = true;
       enableZshIntegration = true;
     };
+    pay-respects = {
+      enable = true;
+      package = pkgs.pay-respects;
+    };
   };
 
   home.file.".editorconfig".text = ''
