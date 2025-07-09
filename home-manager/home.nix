@@ -13,6 +13,7 @@
     ZINIT_HOME = "/nix/store/wspbsjmahdk3fsln6ls17rwa0m8dx5dd-zinit-3.14.0/share/zinit";
     LANG = "en_US.UTF-8";
     LC_ALL = "en_US.UTF-8";
+    PATH = "/run/current-system/sw/bin:${config.home.sessionVariables.PATH or "$PATH"}";
   };
 
   programs = {
