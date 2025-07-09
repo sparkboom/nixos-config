@@ -10,7 +10,7 @@
   gc = "git commit -m";
   gco = "git checkout";
   gcob = "git checkout -b";
-  gpu = "git push";
+  gp = "git push";
   gpl = "git pull --ff-only";
   grb = "git rebase";
   gf = "git fetch";
