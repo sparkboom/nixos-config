@@ -40,6 +40,7 @@
     # Enable fuzzy zsh-autosuggestions
     source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
 
+    cowsay "Welcome mooo."
   '';
 
   history = {

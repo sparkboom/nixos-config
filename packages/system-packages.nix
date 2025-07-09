@@ -6,6 +6,7 @@ with pkgs; [
   ansible                  # Ansible automation tool
   awscli2                  # AWS CLI v2
   bat                      # cat with syntax highlighting
+  cowsay                   # Text program
   curl                     # Command line tool for transferring data with URLs
   deno                     # TypeScript/JavaScript runtime
   eza                      # Modern replacement for 'ls'
