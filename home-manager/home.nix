@@ -7,9 +7,7 @@
   home.stateVersion = "23.11"; # Set this to the version you want to target
 
   home.sessionVariables = {
-    # EDITOR = "nvim";
-    # VISUAL = "nvim";
-    # PAGER = "less";
+    EDITOR = "nano";
     ZINIT_HOME = "/nix/store/wspbsjmahdk3fsln6ls17rwa0m8dx5dd-zinit-3.14.0/share/zinit";
     LANG = "en_US.UTF-8";
     LC_ALL = "en_US.UTF-8";
@@ -44,7 +42,7 @@
   home.packages = with pkgs; [
     htop
     jq
+    yq
     tree
-    zinit
   ];
 }

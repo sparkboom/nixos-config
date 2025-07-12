@@ -9,6 +9,7 @@
     // (import ./aliases/shortcuts.nix)
     // {
       ls = "ls -A --color";
+      paths = "echo $PATH | tr ':' '\n' | sort";
     };
   
   initContent = ''
@@ -31,14 +32,13 @@
       eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/default.toml)"
     fi
 
-    # Enable zoxide
-    # eval "$(zoxide init zsh)"
-
     # Enable fzf tab completion
     eval "$(fzf --zsh)"
 
     # Enable fuzzy zsh-autosuggestions
     source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+
+    source ~/.mydotfiles/utility.sh
 
     cowsay "Hi $USER! Welcome to $(hostname) mooo."
   '';
@@ -54,14 +54,14 @@
     extended = true; # HIST_EXTENDED
   };
 
+  syntaxHighlighting = {
+    enable = true;
+  };
+
   plugins = [
     {
       name = "zsh-autosuggestions";
       src = "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions";
-    }
-    {
-      name = "zsh-syntax-highlighting";
-      src = "${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting";
     }
     {
       name = "zsh-completions";
@@ -70,6 +70,10 @@
     {
       name = "zsh-fzf-tab";
       src = "${pkgs.zsh-fzf-tab}/share/zsh-fzf-tab";
+    }
+    {
+      name = "zsh-syntax-highlighting";
+      src = "${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh";
     }
   ];
 }
