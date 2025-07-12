@@ -18,6 +18,7 @@
   "authy"                      # 2FA authenticator
   "banktivity"                 # Personal finance software
   "betterzip"                  # Archive utility
+  "google-chrome"             # Google Chrome web browser - we use casks so 'open' command works in shell
   "docker-desktop"             # Docker Desktop for Mac
   "expandrive"                 # Cloud storage drive mapping
   "fujitsu-scansnap-home"      # Scanner software

@@ -54,7 +54,6 @@ with pkgs; [
   firefox                  # Web browser
   # ghostty                # Terminal emulator (currently broken)
   gitbutler                # Git GUI client
-  google-chrome            # Web browser
   obsidian                 # Note-taking app
   rectangle                # Window management app
   spotify                  # Music streaming app
