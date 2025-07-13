@@ -1,5 +1,17 @@
 { pkgs }:
 
+# Consider packages
+# nh - nixpkgs tool
+# lazydocker
+# Lazygit
+# tldr
+# fzf-git
+# httpie
+#
+# Apps
+# rustdesk -  Remote desktop software
+# echoapi
+
 with pkgs; [
   # cli
   _1password-cli           # 1Password CLI
@@ -8,6 +20,7 @@ with pkgs; [
   bat                      # cat with syntax highlighting
   cowsay                   # Text program
   curl                     # Command line tool for transferring data with URLs
+  # darwin.trash             # Trash utility for Darwin systems - appears to be buggy, perhaps not supported on latest macOS
   deno                     # TypeScript/JavaScript runtime
   eza                      # Modern replacement for 'ls'
   fzf                      # Fuzzy finder for the command line
@@ -31,6 +44,7 @@ with pkgs; [
   openssl_3                # SSL/TLS cryptography library
   pay-respects             # Utility for Nix package search
   python3                  # Python 3 programming language
+  ripgrep                  # Fast text search tool
   rustc                    # Rust compiler
   rustup                   # Rust toolchain installer
   sqlite                   # Lightweight SQL database engine
@@ -40,6 +54,7 @@ with pkgs; [
   wakeonlan                # Wake-on-LAN utility
   wget                     # Network downloader
   volta                    # JavaScript tool manager
+  xh                       # HTTP client with JSON support
   yarn                     # JavaScript package manager
   zoxide                   # Smarter cd command
   zsh                      # Z shell

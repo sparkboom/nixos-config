@@ -23,13 +23,13 @@
   let
     configuration = { pkgs, ... }: {
       nixpkgs.config.allowUnfree = true;
-      environment.systemPackages = import ./packages/system-packages.nix { inherit pkgs; };
+      environment.systemPackages = import ./nix/packages/system-packages.nix { inherit pkgs; };
 
       # # Homebrew casks
       homebrew = {
         enable = true;
-        casks = import ./packages/homebrew-casks.nix;
-        masApps = import ./packages/mas-apps.nix;
+        casks = import ./nix/packages/homebrew-casks.nix;
+        masApps = import ./nix/packages/mas-apps.nix;
         onActivation.cleanup = "uninstall";
         onActivation.upgrade = false;
         onActivation.autoUpdate = true;
@@ -69,7 +69,7 @@
         home = "/Users/matt";
       };
 
-      fonts.packages = import ./packages/fonts.nix { inherit pkgs; };
+      fonts.packages = import ./nix/packages/fonts.nix { inherit pkgs; };
     };
   in
   {
@@ -83,7 +83,7 @@
           home-manager.backupFileExtension = ".bak";
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.matt = import ./home-manager/home.nix;
+          home-manager.users.matt = import ./nix/home-manager/home.nix;
         }
       ];
     };

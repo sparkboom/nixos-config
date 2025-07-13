@@ -40,7 +40,7 @@
 
     source ~/.mydotfiles/utility.sh
 
-    cowsay "Hi $USER! Welcome to $(hostname) mooo."
+    cowsay "Hi $USER! Welcome to $(hostname) MOOooo"
   '';
 
   history = {
