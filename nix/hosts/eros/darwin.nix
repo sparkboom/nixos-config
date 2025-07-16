@@ -62,20 +62,27 @@ nix-darwin.lib.darwinSystem {
     configuration
     nix-homebrew.darwinModules.nix-homebrew
     {
-      homebrew = {
+      nix-homebrew = {
         enable = true;
+
+        # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
+        enableRosetta = true;
+        
         # Optional: Enable auto-updating Homebrew
         global.autoUpdate = true;
+
+        user = "bnj";
         # Optional: Declare taps, formulae, and casks
         # brews = [ "neovim" ];
         # casks = import ./packages/homebrew-casks.nix;
 
         # Optional: Declarative tap management
         # taps = [ "homebrew/cask-fonts" ];
-        # taps = {
-        #   "homebrew/homebrew-core" = homebrew-core;
-        #   "homebrew/homebrew-cask" = homebrew-cask;
-        # };
+        taps = {
+          "homebrew/homebrew-core" = homebrew-core;
+          "homebrew/homebrew-cask" = homebrew-cask;
+        };
+        mutableTaps = false;
       };
     }
     # home-manager.darwinModules.home-manager {
