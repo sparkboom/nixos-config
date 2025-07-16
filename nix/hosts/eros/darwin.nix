@@ -4,7 +4,9 @@
   mac-app-util,
   home-manager,
   nixpkgs,
-  nix-homebrew
+  nix-homebrew,
+  homebrew-core,
+  homebrew-cask
 }:
 let
   configuration = { pkgs, ... }: {
