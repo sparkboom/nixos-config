@@ -65,9 +65,15 @@ nix-darwin.lib.darwinSystem {
         # Optional: Enable auto-updating Homebrew
         global.autoUpdate = true;
         # Optional: Declare taps, formulae, and casks
-        # taps = [ "homebrew/cask-fonts" ];
         # brews = [ "neovim" ];
-        casks = import ./packages/homebrew-casks.nix;
+        # casks = import ./packages/homebrew-casks.nix;
+
+        # Optional: Declarative tap management
+        # taps = [ "homebrew/cask-fonts" ];
+        taps = {
+          "homebrew/homebrew-core" = homebrew-core;
+          "homebrew/homebrew-cask" = homebrew-cask;
+        };
       };
     }
     # home-manager.darwinModules.home-manager {
