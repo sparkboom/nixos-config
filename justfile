@@ -37,28 +37,27 @@ search-store search:
 # Creates symlinks to stow the home folder, and adopting files in the process
 adopt:
   #!/usr/bin/env bash
-  cd dotfiles > /dev/null;
   myhost="$(hostname | sed 's/\.local$//')";
-  echo "Stowing for host: $myhost";
-  stow --adopt --target="$HOME" "$myhost"; 
+  echo "Stowing & Adopting for host: $myhost, user: $USER";
+  cd "dotfiles/$myhost" > /dev/null;
+  stow --adopt --target="$HOME" "$USER"; 
   cd -  > /dev/null;
 
 # Creates symlinks to stow the home folder
 stow:
   #!/usr/bin/env bash
-  cd dotfiles > /dev/null;
   myhost="$(hostname | sed 's/\.local$//')";
-  echo "Stowing for host: $myhost";
-  stow --target="$HOME" "$myhost"; 
+  echo "Stowing & Adopting for host: $myhost, user: $USER";
+  cd "dotfiles/$myhost" > /dev/null;
+  stow --target="$HOME" "$USER"; 
   cd -  > /dev/null;
  
 # Reverts symlinks to the stow folder
 unstow:
   #!/usr/bin/env bash
-  cd dotfiles > /dev/null;
-  myhost="$(hostname | sed 's/\.local$//')";
-  echo "Unstowing for host: $myhost";
-  stow -D --target="$HOME" "$myhost"; 
+  echo "Unstowing & Adopting for host: $myhost, user: $USER";
+  cd "dotfiles/$myhost" > /dev/null;
+  stow -D --target="$HOME" "$USER"; 
   cd -  > /dev/null;
 
 gc:
