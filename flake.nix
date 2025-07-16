@@ -11,6 +11,8 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
   };
 
   outputs = inputs@{ 
@@ -19,13 +21,14 @@
       nixpkgs, 
       mac-app-util,
       home-manager,
+      nix-homebrew,
     }:
   {
     darwinConfigurations.MattsM3 = import ./nix/hosts/MattsM3/darwin.nix {
       inherit self nix-darwin mac-app-util home-manager nixpkgs;
     };
     darwinConfigurations.eros = import ./nix/hosts/eros/darwin.nix {
-      inherit self nix-darwin mac-app-util home-manager nixpkgs;
+      inherit self nix-darwin mac-app-util home-manager nixpkgs nix-homebrew;
     };
 
     # Expose package set, including overlays, for convinience.

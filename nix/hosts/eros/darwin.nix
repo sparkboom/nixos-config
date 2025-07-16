@@ -4,20 +4,21 @@
   mac-app-util,
   home-manager,
   nixpkgs,
+  nix-homebrew
 }:
 let
   configuration = { pkgs, ... }: {
     nixpkgs.config.allowUnfree = true;
 
     # Homebrew packages
-    homebrew = {
-      enable = true;
-      casks = import ./packages/homebrew-casks.nix;
-      # masApps = import ./packages/mas-apps.nix;
-      onActivation.cleanup = "uninstall";
-      onActivation.upgrade = false;
-      onActivation.autoUpdate = true;
-    };
+    # homebrew = {
+    #   enable = true;
+    #   casks = import ./packages/homebrew-casks.nix;
+    #   # masApps = import ./packages/mas-apps.nix;
+    #   onActivation.cleanup = "uninstall";
+    #   onActivation.upgrade = false;
+    #   onActivation.autoUpdate = true;
+    # };
 
     # Necessary for using flakes on this system.
     nix.settings.experimental-features = "nix-command flakes";
@@ -47,20 +48,36 @@ let
       # screencapture.location = "~/Desktop/screenshots";
       # screensaver.askForPasswordDelay = 10;
     };
+
+    # This is required for now by Nix Darwin to determine
+    # the user that runs darwin-rebuild commands.
+    system.primaryUser = "bnj";
   };
 in
 nix-darwin.lib.darwinSystem {
   modules = [
     mac-app-util.darwinModules.default
     configuration
-    home-manager.darwinModules.home-manager {
-      home-manager = {
-        backupFileExtension = ".bak";
-        useGlobalPkgs = true;
-        useUserPackages = true;
-
-        users.bnj = import ./users/bnj/home.nix;
+    nix-homebrew.darwinModules.nix-homebrew
+    {
+      homebrew = {
+        enable = true;
+        # Optional: Enable auto-updating Homebrew
+        global.autoUpdate = true;
+        # Optional: Declare taps, formulae, and casks
+        # taps = [ "homebrew/cask-fonts" ];
+        # brews = [ "neovim" ];
+        casks = import ./packages/homebrew-casks.nix;
       };
     }
+    # home-manager.darwinModules.home-manager {
+    #   home-manager = {
+    #     backupFileExtension = ".bak";
+    #     useGlobalPkgs = true;
+    #     useUserPackages = true;
+
+    #     users.bnj = import ./users/bnj/home.nix;
+    #   };
+    # }
   ];
 }
