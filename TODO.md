@@ -3,6 +3,10 @@
 
 # To Do
 
+Nix Darwin Homebrew
+- we have different implementations - can I user homebrew-nix for MatssM3 too?
+
+
 Secrets mgmt
 
 Aliases

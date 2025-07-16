@@ -55,6 +55,9 @@ exit
 
 sudo scutil --set LocalHostName {host in config}
 
+sudo mv /etc/zshrc /etc/zshrc.before-nix-darwin
+sudo mv /etc/zprofile /etc/zprofile.before-nix-darwin
+
 nix run nix-darwin/master#darwin-rebuild -- switch --flake .
 ```
 
