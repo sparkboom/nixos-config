@@ -12,6 +12,13 @@ let
   configuration = { pkgs, ... }: {
     nixpkgs.config.allowUnfree = true;
 
+    environment.systemPackages = import ./users/bnj/packages/system-packages.nix { inherit pkgs; };
+
+    environment.variables = {
+      # Temporarily exclude brew casks from being installed - esp if they're troublesome
+      HOMEBREW_BUNDLE_CASK_SKIP = "visual-studio-code@insiders";
+    };
+
     # Homebrew packages
     homebrew = {
       enable = true;
@@ -43,7 +50,28 @@ let
 
     # System configuration
     system.defaults = {
-      dock.autohide = false;
+      dock = {
+        autohide = false;
+        appswitcher-all-displays = true;
+        persistent-apps = [
+          "/System/Applications/Apps.app"
+          "/Applications/Nix Trampolines/Whatsapp.app"
+          "/System/Applications/Messages.app"
+          "/System/Applications/Phone.app"
+          "/Applications/Nix Trampolines/Discord.app"
+          "/Applications/Brave Browser.app"
+          "/Applications/Proton Mail.app"
+          "/Applications/Proton Pass.app"
+          "/Applications/Nix Trampolines/Spotify.app"
+          "/System/Applications/Notes.app"
+          "/System/Applications/Photos.app"
+          "/Applications/Nix Trampolines/Obsidian.app"
+          "/Applications/Nix Trampolines/Rectangle.app"
+          "/System/Applications/Maps.app"
+          "/System/Applications/FindMy.app"
+          "/System/Applications/System Settings.app"
+        ];
+      };
       finder.AppleShowAllExtensions = true;
       # default Finder to column view
       finder.FXPreferredViewStyle = "clmv";
@@ -54,6 +82,18 @@ let
     # This is required for now by Nix Darwin to determine
     # the user that runs darwin-rebuild commands.
     system.primaryUser = "bnj";
+
+    users.users.bnj = {
+      name = "bnj";
+      home = "/Users/bnj";
+    };
+
+    system.defaults.CustomUserPreferences = {
+      "com.apple.windowserver" = {
+        DisplayResolutionEnabled = true;
+        MainDisplayMode = "2560x1600";
+      };
+    };
   };
 in
 nix-darwin.lib.darwinSystem {
@@ -82,14 +122,14 @@ nix-darwin.lib.darwinSystem {
         mutableTaps = false;
       };
     }
-    # home-manager.darwinModules.home-manager {
-    #   home-manager = {
-    #     backupFileExtension = ".bak";
-    #     useGlobalPkgs = true;
-    #     useUserPackages = true;
+    home-manager.darwinModules.home-manager {
+      home-manager = {
+        backupFileExtension = ".bak";
+        useGlobalPkgs = true;
+        useUserPackages = true;
 
-    #     users.bnj = import ./users/bnj/home.nix;
-    #   };
-    # }
+        users.bnj = import ./users/bnj/home.nix;
+      };
+    }
   ];
 }
