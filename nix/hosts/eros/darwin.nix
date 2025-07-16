@@ -9,6 +9,16 @@ let
   configuration = { pkgs, ... }: {
     nixpkgs.config.allowUnfree = true;
 
+    # Homebrew packages
+    homebrew = {
+      enable = true;
+      casks = import ./packages/homebrew-casks.nix;
+      # masApps = import ./packages/mas-apps.nix;
+      onActivation.cleanup = "uninstall";
+      onActivation.upgrade = false;
+      onActivation.autoUpdate = true;
+    };
+
     # Necessary for using flakes on this system.
     nix.settings.experimental-features = "nix-command flakes";
 
