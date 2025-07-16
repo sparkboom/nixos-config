@@ -3,15 +3,15 @@ default:
 
 # Builds and applies Nix-Darwin & Home Manager configuration
 switch:
-  @sudo darwin-rebuild switch --flake ~/Repos/infra/nix-config/nix
+  @sudo darwin-rebuild switch --flake .
 
 # Builds and tests Nix-Darwin & Home Manager configuration
 check:
-  @sudo darwin-rebuild check --flake ~/Repos/infra/nix-config/nix
+  @sudo darwin-rebuild check --flake .
 
 # Builds top-level derication Nix-Darwin & Home Manager configuration and provides a symlink to the result
 build:
-  @sudo darwin-rebuild build --flake ~/Repos/infra/nix-config/nix
+  @sudo darwin-rebuild build --flake .
 
 # Update all Nix, brew and mas dependencies & performs a nix rebuild
 update:

@@ -1,3 +1,6 @@
+# Darwin
+- Screen resolution
+
 # To Do
 
 Secrets mgmt
