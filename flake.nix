@@ -24,8 +24,11 @@
     darwinConfigurations.MattsM3 = import ./nix/hosts/MattsM3/darwin.nix {
       inherit self nix-darwin mac-app-util home-manager nixpkgs;
     };
+    darwinConfigurations.eros = import ./nix/hosts/eros/darwin.nix {
+      inherit self nix-darwin mac-app-util home-manager nixpkgs;
+    };
 
     # Expose package set, including overlays, for convinience.
-    darwinPackages = self.darwinConfigurations.MattsM3.packages;
+    # darwinPackages = self.darwinConfigurations.MattsM3.packages;
   };
 }
