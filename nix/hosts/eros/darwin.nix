@@ -69,7 +69,7 @@ nix-darwin.lib.darwinSystem {
         enableRosetta = true;
         
         # Optional: Enable auto-updating Homebrew
-        global.autoUpdate = true;
+        # global.autoUpdate = true;
 
         user = "bnj";
         # Optional: Declare taps, formulae, and casks
