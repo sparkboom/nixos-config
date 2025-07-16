@@ -5,7 +5,13 @@
   home.homeDirectory = "/Users/bnj";
 
   # Packages
-  home.packages = import ./packages/system-packages.nix { inherit pkgs; };
+  home.packages = with pkgs; [
+    git                      # Git version control system
+    just                     # Just command tool manager
+    stow                     # Symlink farm manager
+  ];
+  
+  # import ./packages/system-packages.nix { inherit pkgs; };
 
   home.stateVersion = "23.11"; # Set this to the version you want to target
 
