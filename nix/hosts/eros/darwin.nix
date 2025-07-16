@@ -72,10 +72,10 @@ nix-darwin.lib.darwinSystem {
 
         # Optional: Declarative tap management
         # taps = [ "homebrew/cask-fonts" ];
-        taps = {
-          "homebrew/homebrew-core" = homebrew-core;
-          "homebrew/homebrew-cask" = homebrew-cask;
-        };
+        # taps = {
+        #   "homebrew/homebrew-core" = homebrew-core;
+        #   "homebrew/homebrew-cask" = homebrew-cask;
+        # };
       };
     }
     # home-manager.darwinModules.home-manager {
