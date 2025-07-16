@@ -65,8 +65,8 @@ nix-darwin.lib.darwinSystem {
       nix-homebrew = {
         enable = true;
 
-        # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
-        enableRosetta = true;
+        # Apple Silicon Only - enable rosetta 2
+        # enableRosetta = true;
         
         # Optional: Enable auto-updating Homebrew
         # global.autoUpdate = true;
@@ -74,7 +74,7 @@ nix-darwin.lib.darwinSystem {
         user = "bnj";
         # Optional: Declare taps, formulae, and casks
         # brews = [ "neovim" ];
-        # casks = import ./packages/homebrew-casks.nix;
+        casks = import ./packages/homebrew-casks.nix;
 
         # Optional: Declarative tap management
         # taps = [ "homebrew/cask-fonts" ];
