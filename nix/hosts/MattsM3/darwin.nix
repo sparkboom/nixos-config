@@ -52,6 +52,14 @@ let
       # screensaver.askForPasswordDelay = 10;
     };
 
+    # Check to see if this works
+    system.defaults.CustomUserPreferences = {
+      "com.apple.windowserver" = {
+        DisplayResolutionEnabled = true;
+        MainDisplayMode = "2560x1600";
+      };
+    };
+
     system.primaryUser = "matt";
 
     users.users.matt = {
