@@ -70,6 +70,10 @@ nix-darwin.lib.darwinSystem {
         useGlobalPkgs = true;
         useUserPackages = true;
 
+        sharedModules = [
+          mac-app-util.homeManagerModules.default
+        ];
+
         users.matt = import ./users/matt/home.nix;
       };
     }

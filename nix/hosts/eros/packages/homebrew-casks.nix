@@ -1,4 +1,7 @@
 [
+  # Found in Nix search, installs, fails to launch from /nix/store
+  "1password"                  # 1Password GUI app
+  
   # Found in Nix search, installs, fails to launch
   "brave-browser"              # Brave web browser
 
@@ -8,6 +11,7 @@
 
   # Not found in Nix search
   "google-chrome"             # Google Chrome web browser - we use casks so 'open' command works in shell
+  "nordvpn"                    # VPN client
 
   "proton-mail"               # Proton Mail - Maill client
   # Only have derivation for intel Macs

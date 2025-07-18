@@ -12,7 +12,7 @@ let
   configuration = { pkgs, ... }: {
     nixpkgs.config.allowUnfree = true;
 
-    environment.systemPackages = import ./users/bnj/packages/system-packages.nix { inherit pkgs; };
+    environment.systemPackages = import ./packages/system-pkgs.nix { inherit pkgs; };
 
     environment.variables = {
       # Temporarily exclude brew casks from being installed - esp if they're troublesome
@@ -74,7 +74,10 @@ let
       };
       finder.AppleShowAllExtensions = true;
       # default Finder to column view
-      finder.FXPreferredViewStyle = "clmv";
+      finder = {
+        FXPreferredViewStyle = "clmv";
+        NewWindowTarget = "Desktop";
+      };
       # screencapture.location = "~/Desktop/screenshots";
       # screensaver.askForPasswordDelay = 10;
     };

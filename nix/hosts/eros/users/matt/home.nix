@@ -5,7 +5,7 @@
   home.homeDirectory = "/Users/bnj";
 
   # Packages
-  home.packages =  import ./packages/user-pkgs.nix { inherit pkgs; };
+  home.packages =  import ../../../../packages/barebones.nix { inherit pkgs; };
 
   home.stateVersion = "23.11"; # Set this to the version you want to target
 
