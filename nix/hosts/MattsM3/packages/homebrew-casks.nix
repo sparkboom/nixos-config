@@ -33,7 +33,7 @@
   "superwhisper"               # Audio transcription tool
   "ultimaker-cura"             # 3D printing slicer
   # "kindle"                   # Kindle desktop app
-  # proxyman                  # Web debugging proxy
+  # proxyman                   # Web debugging proxy
   # splashtop-streamer         # Remote desktop streamer
   # transmit                   # FTP client
   # "tunnelblick"              # OpenVPN client
