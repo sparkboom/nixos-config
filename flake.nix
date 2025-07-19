@@ -30,17 +30,11 @@
     };
   };
 
-  outputs = inputs@{ 
-      self, 
-      nix-darwin, 
-      nixpkgs, 
-      mac-app-util,
-      home-manager,
-      nix-homebrew,
-      homebrew-core,
-      homebrew-cask,
-    }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, mac-app-util, home-manager, nix-homebrew, homebrew-core, homebrew-cask, ... }:
   {
+    # Platform-agnostic devShells
+    devShells = import ./develop.nix { inherit nixpkgs; };
+
     darwinConfigurations.MattsM3 = import ./nix/hosts/MattsM3/darwin.nix {
       inherit self nix-darwin mac-app-util home-manager nixpkgs;
     };
