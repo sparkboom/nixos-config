@@ -30,17 +30,11 @@
     };
   };
 
-  outputs = inputs@{ 
-      self, 
-      nix-darwin, 
-      nixpkgs, 
-      mac-app-util,
-      home-manager,
-      nix-homebrew,
-      homebrew-core,
-      homebrew-cask,
-    }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, mac-app-util, home-manager, nix-homebrew, homebrew-core, homebrew-cask, ... }:
   {
+    # Platform-agnostic devShells
+    devShells = import ./develop.nix { inherit nixpkgs; };
+
     # Use this for 'nix develop' to get started with basic tooling
     devShells.aarch64-darwin.default = nixpkgs.legacyPackages.aarch64-darwin.mkShell {
       packages = [ nixpkgs.legacyPackages.aarch64-darwin.git ];
