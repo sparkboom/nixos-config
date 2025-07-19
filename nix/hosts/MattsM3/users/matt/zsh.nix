@@ -2,7 +2,7 @@
 {
   enable = true;
   shellAliases =
-    (import ./aliases/git.nix)
+    (import ../../../../apps/git/aliases.nix)
     // (import ./aliases/apps.nix)
     // (import ./aliases/docker.nix)
     // (import ./aliases/kubernetes.nix)
