@@ -16,6 +16,5 @@
   gf = "git fetch";
   gfa = "git fetch --all";
   gt = "gittower .";
-  ks = "open \"/Applications/Kaleidoscope.app/Contents/MacOS/Kaleidoscope\"";
   gop = "open \"$(get_github_page)\"";
 }
