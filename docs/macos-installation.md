@@ -47,7 +47,9 @@ cat ~/.ssh/id_ed25519.pub
 mkdir -p ~/Repos/infra/nixos-config
 cd ~/Repos/infra/nixos-config
 
-nix-shell -p git
+# launch the shell with basic tooling
+nix develop
+
 # nix-shell >
 git clone git@github.com:sparkboom/nixos-config.git .
 exit
