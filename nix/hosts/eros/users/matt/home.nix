@@ -1,11 +1,14 @@
 { config, pkgs, ... }:
+let
+  user = import ./user.nix;
+in
 {
   # User account
-  home.username = "bnj";
-  home.homeDirectory = "/Users/bnj";
+  home.username = user.name;
+  home.homeDirectory = user.home;
 
   # Packages
-  home.packages =  import ../../../../packages/barebones.nix { inherit pkgs; };
+  home.packages =  import ./packages/user-pkgs.nix { inherit pkgs; };
 
   home.stateVersion = "23.11"; # Set this to the version you want to target
 

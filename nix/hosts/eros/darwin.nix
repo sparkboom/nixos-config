@@ -84,12 +84,10 @@ let
 
     # This is required for now by Nix Darwin to determine
     # the user that runs darwin-rebuild commands.
-    system.primaryUser = "bnj";
+    system.primaryUser = "matt";
 
-    users.users.bnj = {
-      name = "bnj";
-      home = "/Users/bnj";
-    };
+    users.users.bnj = import ./users/bnj/user.nix;
+    users.users.matt = import ./users/matt/user.nix;
 
     system.defaults.CustomUserPreferences = {
       "com.apple.windowserver" = {
