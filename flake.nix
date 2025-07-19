@@ -35,11 +35,6 @@
     # Platform-agnostic devShells
     devShells = import ./develop.nix { inherit nixpkgs; };
 
-    # Use this for 'nix develop' to get started with basic tooling
-    devShells.aarch64-darwin.default = nixpkgs.legacyPackages.aarch64-darwin.mkShell {
-      packages = [ nixpkgs.legacyPackages.aarch64-darwin.git ];
-    };
-
     darwinConfigurations.MattsM3 = import ./nix/hosts/MattsM3/darwin.nix {
       inherit self nix-darwin mac-app-util home-manager nixpkgs;
     };
