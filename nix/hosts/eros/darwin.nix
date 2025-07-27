@@ -19,6 +19,8 @@ let
       HOMEBREW_BUNDLE_CASK_SKIP = "visual-studio-code@insiders";
     };
 
+    environment.shells = with pkgs; [ zsh ];
+
     # Homebrew packages
     homebrew = {
       enable = true;
@@ -50,31 +52,10 @@ let
 
     # System configuration
     system.defaults = {
-      dock = {
-        autohide = false;
-        appswitcher-all-displays = true;
-        persistent-apps = [
-          "/System/Applications/Apps.app"
-          "/Applications/Nix Trampolines/Whatsapp.app"
-          "/System/Applications/Messages.app"
-          "/System/Applications/Phone.app"
-          "/Applications/Nix Trampolines/Discord.app"
-          "/Applications/Brave Browser.app"
-          "/Applications/Proton Mail.app"
-          "/Applications/Proton Pass.app"
-          "/Applications/Nix Trampolines/Spotify.app"
-          "/System/Applications/Notes.app"
-          "/System/Applications/Photos.app"
-          "/Applications/Nix Trampolines/Obsidian.app"
-          "/Applications/Nix Trampolines/Rectangle.app"
-          "/System/Applications/Maps.app"
-          "/System/Applications/FindMy.app"
-          "/System/Applications/System Settings.app"
-        ];
-      };
-      finder.AppleShowAllExtensions = true;
+      dock = import ./dock.nix;
       # default Finder to column view
       finder = {
+        AppleShowAllExtensions = true;
         FXPreferredViewStyle = "clmv";
         NewWindowTarget = "Desktop";
       };
@@ -130,6 +111,7 @@ nix-darwin.lib.darwinSystem {
         useUserPackages = true;
 
         users.bnj = import ./users/bnj/home.nix;
+        users.matt = import ./users/matt/home.nix;
       };
     }
   ];
