@@ -13,7 +13,8 @@ in
   home.stateVersion = "23.11"; # Set this to the version you want to target
 
   programs = {
-    git = import ./apps/git.nix;
+    git = import ../../../../apps/git/default.nix;
+    zsh = import ./zsh.nix { inherit pkgs; };
   };
 
   home.sessionVariables = {
