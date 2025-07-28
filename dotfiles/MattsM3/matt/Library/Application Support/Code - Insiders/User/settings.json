@@ -1,0 +1,24 @@
+{
+    "workbench.colorTheme": "Quiet Light",
+    "editor.fontFamily": "OperatorMonoLig-Medium, Monaco, 'Courier New', monospace",
+    // SourceCodePro+Powerline+Awesome+Regular
+    // FiraCode-Regular
+    // OperatorMono-Medium
+    // "terminal.integrated.fontFamily": "OperatorMono-Medium",
+    "terminal.integrated.fontFamily": "FiraCode-Retina",
+    "terminal.integrated.fontSize": 10,
+    "[typescript]": {
+        "editor.defaultFormatter": "denoland.vscode-deno"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "extensions.trustedPublishers": [
+        "denoland",
+        "dlech",
+        "editorconfig",
+        "laurencebahiirwa"
+    ],
+    // "terminal.integrated.fontLigatures": true
+    "nix.enableLanguageServer": true
+}
