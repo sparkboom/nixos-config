@@ -1,0 +1,108 @@
+"$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
+final_space = true
+version = 3
+
+# [[blocks]]
+# type = "rprompt"
+
+#   [[blocks.segments]]
+#   foreground = "#007ACC"
+#   template = " {{ .CurrentDate | date .Format }} "
+#   style = "plain"
+#   type = "time"
+
+#     [blocks.segments.properties]
+#     time_format = "15:04:05"
+
+[[blocks]]
+alignment = "left"
+type = "prompt"
+newline = true
+
+  # [[blocks.segments]]
+  # foreground = "#ffffff"
+  # template = " {{ .UserName }} "
+  # style = "plain"
+  # type = "session"
+
+  [[blocks.segments]]
+  type = "path"
+  style = "plain"
+  background = "transparent"
+  foreground = "blue"
+  powerline_symbol = ""
+  template = "{{ .Path }} "
+
+    [blocks.segments.properties]
+    style = "full"
+
+  [[blocks.segments]]
+  type = "git"
+  style = "plain"
+  background = "transparent"
+  foreground = "#cccccc"
+  template = "{{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <cyan>{{ if gt .Behind 0 }}⬇{{ end }}</><cyan>{{ if gt .Ahead 0 }}⬆{{ end }}</>"
+  
+    [blocks.segments.properties]
+    fetch_status = true
+    commit_icon = '@'
+
+[[blocks]]
+type = "rprompt"
+alignment = "right"
+overflow = 'hidden'
+
+  [[blocks.segments]]
+  type = "executiontime"
+  style = "plain"
+  background = "transparent"
+  foreground = "yellow"
+  template = "{{ div .Ms 1000 }}s"
+
+    [blocks.segments.properties]
+    threshold = 5000
+
+[[blocks]]
+type = "prompt"
+alignment = "left"
+newline = true
+
+  [[blocks.segments]]
+  type = "text"
+  style = "plain"
+  background = "transparent"
+  foreground = "magenta"
+  template = "⟩"
+  foreground_templates = [
+    "{{if gt .Code 0}}red{{end}}",
+    "{{if eq .Code 0}}magenta{{end}}"
+  ]
+
+[transient_prompt]
+  background = "transparent"
+  foreground = "magenta"
+  foreground_templates = [
+    "{{if gt .Code 0}}red{{end}}",
+    "{{if eq .Code 0}}magenta{{end}}"
+  ]
+
+[secondary_prompt]
+  background = "transparent"
+  foreground = "magenta"
+  template = "⟩⟩"
+
+[[tooltips]]
+type = "git"
+tips = [ "git" ]
+style = "plain"
+background = "transparent"
+foreground = "yellow"
+template = "{{ .HEAD }}{{ if .Staging.Changed }} ✔{{ .Staging.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} ✎{{ .Working.String }}{{ end }}"
+
+  [blocks.segments.properties]
+  branch_icon = ''
+  fetch_status = true
+
+
+
+[palette]
