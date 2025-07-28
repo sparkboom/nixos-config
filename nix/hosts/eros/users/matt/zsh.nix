@@ -22,21 +22,21 @@
     # Stop default completion behavior
     zstyle ':completion:*' menu no
     # Show preview in autocompletion
-    # zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realPath'
+    zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realPath'
 
-    # if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-    #  eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/default.toml)"
-    # fi
+    if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
+      eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/default.toml)"
+    fi
 
     # Enable fzf tab completion
-    # eval "$(fzf --zsh)"
+    eval "$(fzf --zsh)"
 
     # Enable fuzzy zsh-autosuggestions
-    # source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+    source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
 
-    # source ~/.mydotfiles/utility.sh
+    source ~/.mydotfiles/utility.sh
 
-    echo "Hi $USER! Welcome to $(hostname) MOOooo"
+    cowsay "Hi $USER! Welcome to $(hostname) MOOooo"
   '';
 
   history = {
@@ -53,4 +53,23 @@
   syntaxHighlighting = {
     enable = true;
   };
+
+  plugins = [
+    {
+      name = "zsh-autosuggestions";
+      src = "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions";
+    }
+    {
+      name = "zsh-completions";
+      src = "${pkgs.zsh-completions}/share/zsh-completions";
+    }
+    {
+      name = "zsh-fzf-tab";
+      src = "${pkgs.zsh-fzf-tab}/share/zsh-fzf-tab";
+    }
+    {
+      name = "zsh-syntax-highlighting";
+      src = "${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh";
+    }
+  ];
 }

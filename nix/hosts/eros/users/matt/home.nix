@@ -15,6 +15,8 @@ in
   programs = {
     git = import ../../../../apps/git/default.nix;
     zsh = import ./zsh.nix { inherit pkgs; };
+    zoxide = import ../../../../apps/zoxide/config.nix { inherit pkgs; };
+    pay-respects = import ../../../../apps/pay-respects/config.nix { inherit pkgs; };
   };
 
   home.sessionVariables = {
