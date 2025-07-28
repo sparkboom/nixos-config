@@ -55,9 +55,10 @@ stow:
 # Reverts symlinks to the stow folder
 unstow:
   #!/usr/bin/env bash
+  myhost="$(hostname | sed 's/\.local$//')";
   echo "Unstowing & Adopting for host: $myhost, user: $USER";
   cd "dotfiles/$myhost" > /dev/null;
-  stow -D --target="$HOME" "$USER"; 
+  stow -D --target="$HOME" "$USER";
   cd -  > /dev/null;
 
 gc:

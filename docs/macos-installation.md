@@ -61,3 +61,19 @@ sudo mv /etc/zprofile /etc/zprofile.before-nix-darwin
 
 nix run nix-darwin/master#darwin-rebuild -- switch --flake .
 ```
+
+Also install xcode cli tools, as required by Homebrew, this cannot be done 
+```sh
+xcode-select --install
+```
+
+----
+
+## Troubleshooting - Manually get paths configured for apps
+
+If you find yourself troubleshooting and needing access to installed Nix & Homebrew apps
+
+```sh
+export PATH="/run/current-system/sw/bin:$PATH"
+export PATH="$PATH:/opt/homebrew/bin"
+```
