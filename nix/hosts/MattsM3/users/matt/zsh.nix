@@ -3,9 +3,9 @@
   enable = true;
   shellAliases =
     (import ../../../../apps/git/aliases.nix)
+    // (import ../../../../apps/docker/aliases.nix)
+    // (import ../../../../apps/kubernetes/aliases.nix)
     // (import ./aliases/apps.nix)
-    // (import ./aliases/docker.nix)
-    // (import ./aliases/kubernetes.nix)
     // (import ./aliases/shortcuts.nix)
     // {
       ls = "ls -A --color";

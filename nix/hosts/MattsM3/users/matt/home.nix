@@ -1,8 +1,11 @@
 { config, pkgs, ... }:
-
+let
+  user = import ./user.nix;
+in
 {
-  home.username = "matt";
-  home.homeDirectory = "/Users/matt";
+  # User account
+  home.username = user.name;
+  home.homeDirectory = user.home;
 
   home.stateVersion = "23.11"; # Set this to the version you want to target
 
@@ -16,18 +19,8 @@
   programs = {
     zsh = import ./zsh.nix { inherit pkgs; };
     git = import ./git.nix;
-    zoxide = { 
-      enable = true;
-      enableZshIntegration = true;
-    };
-    pay-respects = {
-      enable = true;
-      package = pkgs.pay-respects;
-      options = [
-        "--alias"
-        "tf"
-      ];
-    };
+    zoxide = import ../../../../apps/zoxide/config.nix { inherit pkgs; };
+    pay-respects = import ../../../../apps/pay-respects/config.nix { inherit pkgs; };
   };
 
   home.file.".editorconfig".text = ''

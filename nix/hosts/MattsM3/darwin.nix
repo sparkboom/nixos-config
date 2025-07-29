@@ -67,10 +67,7 @@ let
 
     system.primaryUser = "matt";
 
-    users.users.matt = {
-      name = "matt";
-      home = "/Users/matt";
-    };
+    users.users.matt = import ./users/matt/user.nix;
   };
 in
 nix-darwin.lib.darwinSystem {
