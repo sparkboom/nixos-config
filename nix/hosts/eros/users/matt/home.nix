@@ -13,8 +13,8 @@ in
   home.stateVersion = "23.11"; # Set this to the version you want to target
 
   programs = {
-    git = import ../../../../apps/git/default.nix;
-    zsh = import ./zsh.nix { inherit pkgs; };
+    git = import ../../../../apps/git/config.nix { inherit pkgs; };
+    zsh = import ./apps/zsh.nix { inherit pkgs; };
     zoxide = import ../../../../apps/zoxide/config.nix { inherit pkgs; };
     pay-respects = import ../../../../apps/pay-respects/config.nix { inherit pkgs; };
   };

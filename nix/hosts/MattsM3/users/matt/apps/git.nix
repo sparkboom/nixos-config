@@ -1,17 +1,17 @@
-{
-  enable = true;
-  userName = "Matthew McLeod";
-  userEmail = "matt@sparkboom.com";
+{pkgs, lib}:
+let 
+  git-config = import ../../../../../apps/git/config.nix { inherit pkgs; };
+in
+lib.recursiveUpdate git-config {
   extraConfig = {
-    push.autoSetupRemote = true;
-    core.editor = "/Applications/Visual Studio Code - Insiders.app/Contents/MacOS/Electron";
+    credential.helper = "osxkeychain";
     diff.tool = "/Applications/Kaleidoscope.app/Contents/MacOS/Kaleidoscope";
+    difftool.prompt = false;
+    difftool.Kaleidoscope.cmd = "ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"";
     merge.tool = "/Applications/Kaleidoscope.app/Contents/MacOS/Kaleidoscope";
     mergetool.prompt = false;
     mergetool.Kaleidoscope.cmd = "ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot";
     mergetool.Kaleidoscope.trustexitcode = true;
-    difftool.Kaleidoscope.cmd = "ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"";
-    difftool.prompt = false;
-    web.browser = "google-chrome";
   };
 }
+

@@ -1,6 +1,7 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 let
   user = import ./user.nix;
+
 in
 {
   # User account
@@ -17,8 +18,8 @@ in
   };
 
   programs = {
-    zsh = import ./zsh.nix { inherit pkgs; };
-    git = import ./git.nix;
+    zsh = import ./apps/zsh.nix { inherit pkgs; };
+    git = import ./apps/git.nix { inherit pkgs lib; };
     zoxide = import ../../../../apps/zoxide/config.nix { inherit pkgs; };
     pay-respects = import ../../../../apps/pay-respects/config.nix { inherit pkgs; };
   };

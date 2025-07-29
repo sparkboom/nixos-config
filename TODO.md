@@ -28,6 +28,8 @@ rm = gio trash
 g = lazygit
 y = yazi
 
+Apps
+- pass - password manager cli
 
 
 Derivations
