@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, pkgs-stable }:
 
 # Consider packages
 # nh - nixpkgs tool
@@ -65,7 +65,7 @@ with pkgs; [
 
   # GUI Apps
   bitwarden-desktop        # Password manager desktop app
-  blender                  # 3D creation suite
+  pkgs-stable.blender      # 3D creation suite
   firefox                  # Web browser
   # ghostty                # Terminal emulator (currently broken)
   gitbutler                # Git GUI client

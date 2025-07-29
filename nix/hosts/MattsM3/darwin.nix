@@ -4,11 +4,16 @@
   mac-app-util,
   home-manager,
   nixpkgs,
+  nixpkgs-stable-darwin
 }:
 let
-  configuration = { pkgs, ... }: {
+  
+  configuration = { pkgs, ... }: 
+    let
+      pkgs-stable = nixpkgs-stable-darwin.legacyPackages.${pkgs.system};
+    in {
     nixpkgs.config.allowUnfree = true;
-    environment.systemPackages = import ./packages/system-packages.nix { inherit pkgs; };
+    environment.systemPackages = import ./packages/system-packages.nix { inherit pkgs pkgs-stable; };
 
     # # Homebrew casks
     homebrew = {
