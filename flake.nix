@@ -5,6 +5,9 @@
     # Library of all Nix packages
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
+    # Nixpkgs - stable release of Darwin Nix packages
+    nixpkgs-stable-darwin.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
+
     # Nix-Darwin - tools for managing macOS at the systems level
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -30,13 +33,23 @@
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, mac-app-util, home-manager, nix-homebrew, homebrew-core, homebrew-cask, ... }:
+  outputs = inputs@{ 
+    self, 
+    nix-darwin, 
+    nixpkgs, 
+    nixpkgs-stable-darwin,
+    mac-app-util,
+    home-manager,
+    nix-homebrew,
+    homebrew-core,
+    homebrew-cask,
+    ... }:
   {
     # Platform-agnostic devShells
     devShells = import ./develop.nix { inherit nixpkgs; };
 
     darwinConfigurations.MattsM3 = import ./nix/hosts/MattsM3/darwin.nix {
-      inherit self nix-darwin mac-app-util home-manager nixpkgs;
+      inherit self nix-darwin mac-app-util home-manager nixpkgs nixpkgs-stable-darwin;
     };
     darwinConfigurations.eros = import ./nix/hosts/eros/darwin.nix {
       inherit self nix-darwin mac-app-util home-manager nixpkgs nix-homebrew homebrew-core homebrew-cask;
