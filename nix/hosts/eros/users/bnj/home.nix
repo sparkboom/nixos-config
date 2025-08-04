@@ -14,6 +14,14 @@ in
 
   programs = {
     git = import ../../../../apps/git/default.nix;
+    chromium = {
+      enable = true;
+      package = pkgs.brave;
+      extensions = [
+        { id = "hpcgabhdlnapolkkjpejieegfpehfdok"; } # Media Harvest : X (twitter) Media Downloader
+        { id = "ghmbeldphafepmbegfdlkpapadhbakde"; } # Proton Pass
+      ];
+    }
   };
 
   home.sessionVariables = {
